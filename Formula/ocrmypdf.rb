@@ -5,6 +5,8 @@ class Ocrmypdf < Formula
   url "https://files.pythonhosted.org/packages/9f/b4/4c5826343154a6d11aa82ea40d83e7bb483e1a833539d7061d4ca9842e97/ocrmypdf-4.5.1.tar.gz"
   sha256 "6a2692cf1a7277be5139d94144406ac1c9a8c42da803e93b70e50e649c222aec"
   depends_on :python3
+  depends_on "pkg-config"
+  depends_on "libffi"
   depends_on "tesseract"
   depends_on "ghostscript"
   depends_on "unpaper"
