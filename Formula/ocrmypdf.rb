@@ -5,9 +5,10 @@ class Ocrmypdf < Formula
 
   url "https://files.pythonhosted.org/packages/9f/b4/4c5826343154a6d11aa82ea40d83e7bb483e1a833539d7061d4ca9842e97/ocrmypdf-4.5.1.tar.gz"
   sha256 "6a2692cf1a7277be5139d94144406ac1c9a8c42da803e93b70e50e649c222aec"
-  
+
   depends_on :python3
   depends_on "pkg-config" => :build
+  depends_on "zlib"
   depends_on "libffi"
   depends_on "tesseract"
   depends_on "ghostscript"
@@ -16,6 +17,7 @@ class Ocrmypdf < Formula
   # For Pillow source install
   depends_on "openjpeg"
   depends_on "freetype"
+  depends_on "libpng"
 
   resource "cffi" do
     url "https://files.pythonhosted.org/packages/a1/32/e3d6c3a8b5461b903651dd6ce958ed03c093d2e00128e3f33ea69f1d7965/cffi-1.9.1.tar.gz"
