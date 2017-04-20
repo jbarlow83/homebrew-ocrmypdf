@@ -1,19 +1,20 @@
+
 class Ocrmypdf < Formula
   include Language::Python::Virtualenv
+
   desc "Adds an OCR text layer to scanned PDF files"
   homepage "https://github.com/jbarlow83/OCRmyPDF"
-
-  url "https://files.pythonhosted.org/packages/9f/b4/4c5826343154a6d11aa82ea40d83e7bb483e1a833539d7061d4ca9842e97/ocrmypdf-4.5.1.tar.gz"
-  sha256 "6a2692cf1a7277be5139d94144406ac1c9a8c42da803e93b70e50e649c222aec"
+  url "https://files.pythonhosted.org/packages/66/8e/7bbe145409372eb1278b324c89368f684db00c26a5097b612ab9a516d5fb/ocrmypdf-4.5.4.tar.gz"
+  sha256 "a593eb3b6b669bba7fa92cbcd3940b9309f3e2db2749a62b359cb02e5ba958da"
 
   depends_on :python3
   depends_on "pkg-config" => :build
-  depends_on "zlib"
   depends_on "libffi"
   depends_on "tesseract"
   depends_on "ghostscript"
   depends_on "unpaper"
   depends_on "qpdf"
+
   # For Pillow source install
   depends_on "openjpeg"
   depends_on "freetype"
@@ -59,13 +60,15 @@ class Ocrmypdf < Formula
     sha256 "d78728d802013d91d15e5e939554dabce196967734850fa44634dce47e3e5061"
   end
 
+
   def install
-    ENV.append ["SETUPTOOLS_SCM_PRETEND_VERSION"], "v4.5.1"
+    ENV.append ["SETUPTOOLS_SCM_PRETEND_VERSION"], "v4.5.4"
     ENV.each do |key, value|
       puts "#{key}:#{value}"
     end
     virtualenv_install_with_resources
   end
+
   test do
     # `test do` will create, run in and delete a temporary directory.
     #
