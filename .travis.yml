@@ -1,7 +1,3 @@
-cache:
-  pip: true
-  - $HOME/Library/Caches/Homebrew
-
 matrix:
   include:
     - os: osx
