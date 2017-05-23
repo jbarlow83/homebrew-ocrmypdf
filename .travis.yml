@@ -1,0 +1,24 @@
+cache:
+  pip: true
+  - $HOME/Library/Caches/Homebrew
+
+matrix:
+  include:
+    - os: osx
+      osx_image: xcode8.3
+      language: generic
+    - os: osx
+      osx_image: xcode8.2
+      language: generic
+    - os: osx
+      osx_image: xcode8.1
+      language: generic
+    - os: osx
+      osx_image: xcode8
+      language: generic
+    - os: osx
+      osx_image: xcode7.3
+      language: generic
+
+script:
+- brew install Formula/ocrmypdf.rb
