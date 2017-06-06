@@ -8,6 +8,7 @@ class Ocrmypdf < Formula
   sha256 "5d23f90c3ac742f92ef57b4da4557c3a2fe254be13fa850ad6c8a2d22758dcbc"
 
   depends_on :python3
+  depends_on :x11  # Pillow needs XQuartz
   depends_on "pkg-config" => :build
   depends_on "libffi"
   depends_on "tesseract"
