@@ -18,3 +18,4 @@ matrix:
 
 script:
 - brew install Formula/ocrmypdf.rb
+- ocrmypdf --version
