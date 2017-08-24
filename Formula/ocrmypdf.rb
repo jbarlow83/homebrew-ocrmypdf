@@ -4,8 +4,8 @@ class Ocrmypdf < Formula
 
   desc "Adds an OCR text layer to scanned PDF files"
   homepage "https://github.com/jbarlow83/OCRmyPDF"
-  url "https://files.pythonhosted.org/packages/2b/66/253ea922aec126e9265c85faaa26a3ea5a4a16e894030a72c61ac72f8019/ocrmypdf-5.3.tar.gz"
-  sha256 "502f0552ee2fff662252ac88944f4df6621575fde6047c9016c62756276b274b"
+  url "https://files.pythonhosted.org/packages/01/9a/bb57f45c86684f34e9d4e294c0d80db362b702777ba784507827832ab7f3/ocrmypdf-5.3.2.tar.gz"
+  sha256 "4bb9eb38294766ce01a84d68838afa32dc1356d3d917d4c44cee56750040e426"
 
   depends_on :python3
   depends_on :x11  # Pillow needs XQuartz
@@ -65,7 +65,7 @@ class Ocrmypdf < Formula
   end
 
   def install
-    ENV.append ["SETUPTOOLS_SCM_PRETEND_VERSION"], "v5.3"
+    ENV.append ["SETUPTOOLS_SCM_PRETEND_VERSION"], "v5.3.2"
     ENV.each do |key, value|
       puts "#{key}:#{value}"
     end
