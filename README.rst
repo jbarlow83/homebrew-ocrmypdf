@@ -17,3 +17,11 @@ Troubleshooting
 ===============
 
 Please run ``brew update`` and check ``brew doctor`` to make sure your system is ready to brew.
+
+If you encounter an error message whose last line is ``pip.exceptions.InstallationError``, this error message produced by the Homebrew/Python installation code, and unfortunately it hides the real error message (but still provides a bit of information). To help with this one, please run 
+
+.. code::
+
+	brew install --keep-tmp --debug ocrmypdf
+	
+which may provide more information and access to log files.
