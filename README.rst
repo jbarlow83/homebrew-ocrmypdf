@@ -25,3 +25,8 @@ If you encounter an error message whose last line is ``pip.exceptions.Installati
 	brew install --keep-tmp --debug ocrmypdf
 	
 which may provide more information and access to log files.
+
+Alternative
+-----------
+
+If the homebrew version is not working for you, or if you prefer to not use homebrew, try the `manual installation procedure for macOS <https://ocrmypdf.readthedocs.io/en/latest/installation.html#manual-installation-on-macos>`_ .
