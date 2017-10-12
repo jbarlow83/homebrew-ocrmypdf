@@ -4,8 +4,8 @@ class Ocrmypdf < Formula
 
   desc "Adds an OCR text layer to scanned PDF files"
   homepage "https://github.com/jbarlow83/OCRmyPDF"
-  url "https://files.pythonhosted.org/packages/50/9a/8a15202d0788d137934befb9bed6ce8c3f2529fa865b872c2124b0ab2920/ocrmypdf-5.4.tar.gz"
-  sha256 "6a7c8c333053c465c8820f03230c8dc201978bf73783382bb00abf32021fe8d6"
+  url "https://files.pythonhosted.org/packages/2c/d5/9f2bb9651e2ab693e7556f0a5689f87f605d0eda078513cbc32925c50f45/ocrmypdf-5.4.1.tar.gz"
+  sha256 "14f8096122e059c7e954885588addbda15e4e168082588f6d41d58032093ea9f"
 
   depends_on :python3
   depends_on :x11  # Pillow needs XQuartz
@@ -45,8 +45,8 @@ class Ocrmypdf < Formula
   end
 
   resource "pycparser" do
-    url "https://files.pythonhosted.org/packages/be/64/1bb257ffb17d01f4a38d7ce686809a736837ad4371bcc5c42ba7a715c3ac/pycparser-2.17.tar.gz"
-    sha256 "0aac31e917c24cb3357f5a4d5566f2cc91a19ca41862f6c3c22dc60a629673b6"
+    url "https://files.pythonhosted.org/packages/8c/2d/aad7f16146f4197a11f8e91fb81df177adcc2073d36a17b1491fd09df6ed/pycparser-2.18.tar.gz"
+    sha256 "99a8ca03e29851d96616ad0404b4aad7d9ee16f25c9f9708a11faf2810f7b226"
   end
 
   resource "PyPDF2" do
@@ -65,7 +65,7 @@ class Ocrmypdf < Formula
   end
 
   def install
-    ENV.append ["SETUPTOOLS_SCM_PRETEND_VERSION"], "v5.4"
+    ENV.append ["SETUPTOOLS_SCM_PRETEND_VERSION"], "v5.4.1"
     ENV.each do |key, value|
       puts "#{key}:#{value}"
     end
