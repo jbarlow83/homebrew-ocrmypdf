@@ -23,6 +23,7 @@ class Ocrmypdf < Formula
   depends_on "libjpeg"
   depends_on "webp"
   depends_on "little-cms2"
+  depends_on "zlib"
 
   resource "cffi" do
     url "https://files.pythonhosted.org/packages/c9/70/89b68b6600d479034276fed316e14b9107d50a62f5627da37fafe083fde3/cffi-1.11.2.tar.gz"
