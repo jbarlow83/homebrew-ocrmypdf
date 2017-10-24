@@ -23,8 +23,9 @@ If you encounter an error message whose last line is ``pip.exceptions.Installati
 .. code::
 
 	brew install --keep-tmp --debug ocrmypdf
-	
-which may provide more information and access to log files.
+
+That tells ``brew`` to put all of the intermediate files it generates in ``~/Library/Logs/Homebrew/ocrmypdf``. If you are getting the ``pip.exceptions.InstallationError`` please include a .zip of those intermediate files.
+
 
 Alternative
 -----------
