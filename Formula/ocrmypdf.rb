@@ -4,8 +4,8 @@ class Ocrmypdf < Formula
 
   desc "Adds an OCR text layer to scanned PDF files"
   homepage "https://github.com/jbarlow83/OCRmyPDF"
-  url "https://files.pythonhosted.org/packages/2c/d5/9f2bb9651e2ab693e7556f0a5689f87f605d0eda078513cbc32925c50f45/ocrmypdf-5.4.1.tar.gz"
-  sha256 "14f8096122e059c7e954885588addbda15e4e168082588f6d41d58032093ea9f"
+  url "https://files.pythonhosted.org/packages/6d/c4/764d141f612a9cf323cba31164236fb9a499c1cd932309117e1218e72c8c/ocrmypdf-5.4.2.tar.gz"
+  sha256 "464654a7eb08c3d40c2ebac676326b4c48343bdd72f0a4abb6ba38fd2582d921"
 
   depends_on :python3
   depends_on :x11  # Pillow needs XQuartz
@@ -26,13 +26,13 @@ class Ocrmypdf < Formula
   depends_on "zlib"
 
   resource "cffi" do
-    url "https://files.pythonhosted.org/packages/c9/70/89b68b6600d479034276fed316e14b9107d50a62f5627da37fafe083fde3/cffi-1.11.2.tar.gz"
-    sha256 "ab87dd91c0c4073758d07334c1e5f712ce8fe48f007b86f8238773963ee700a6"
+    url "https://files.pythonhosted.org/packages/5b/b9/790f8eafcdab455bcd3bd908161f802c9ce5adbf702a83aa7712fcc345b7/cffi-1.10.0.tar.gz"
+    sha256 "b3b02911eb1f6ada203b0763ba924234629b51586f72a21faacc638269f4ced5"
   end
 
   resource "img2pdf" do
-    url "https://files.pythonhosted.org/packages/7e/a2/4f06081f674920be757d894b4bab874e6a3b5227e730cb7618430b366e69/img2pdf-0.2.4.tar.gz"
-    sha256 "140b70fa3a3bfb54e92947818cee01483a4f1492b5d1d02b0f649257f5ffc9ae"
+    url "https://files.pythonhosted.org/packages/b6/bc/e72a813265a5e7b7319c74130888c60bed441b4a13c2b8f76a33c19541bb/img2pdf-0.2.3.tar.gz"
+    sha256 "156d9abae0429e30d68c8c8978fbcc23d5a841c6aa8bb914755c5b366f95dc46"
   end
 
   resource "olefile" do
@@ -41,8 +41,8 @@ class Ocrmypdf < Formula
   end
 
   resource "Pillow" do
-    url "https://files.pythonhosted.org/packages/e0/82/ec499c78bfe4ecaa91c2f3000040451d187ed0a816d58b8543e29c48827f/Pillow-4.3.0.tar.gz"
-    sha256 "a97c715d44efd5b4aa8d739b8fad88b93ed79f1b33fc2822d5802043f3b1b527"
+    url "https://files.pythonhosted.org/packages/93/73/66854f63b1941aad9af18a1de59f9cf95ad1a87c801540222e332f6688d7/Pillow-4.1.1.tar.gz"
+    sha256 "00b6a5f28d00f720235a937ebc2f50f4292a5c7e2d6ab9a8b26153b625c4f431"
   end
 
   resource "pycparser" do
@@ -66,7 +66,7 @@ class Ocrmypdf < Formula
   end
 
   def install
-    ENV.append ["SETUPTOOLS_SCM_PRETEND_VERSION"], "v5.4.1"
+    ENV.append ["SETUPTOOLS_SCM_PRETEND_VERSION"], "v5.4.2"
     ENV.each do |key, value|
       puts "#{key}:#{value}"
     end
