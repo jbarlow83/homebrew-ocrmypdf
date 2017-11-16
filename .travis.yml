@@ -19,4 +19,4 @@ matrix:
 script:
 - brew update
 - brew install Formula/ocrmypdf.rb
-- ocrmypdf --version
+
