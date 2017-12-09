@@ -8,17 +8,13 @@ class Ocrmypdf < Formula
   sha256 "e523591c5d4e4a8cdeee2e9e24c3f631c8638a803dba74c5b8b274681784dbf4"
 
   depends_on :python3
-  depends_on :x11  # Pillow needs XQuartz
+  depends_on :x11 # Pillow needs XQuartz
   depends_on "pkg-config" => :build
   depends_on "libffi"
   depends_on "tesseract"
   depends_on "ghostscript"
   depends_on "unpaper"
   depends_on "qpdf"
-
-  # mactex installs its own ghostscript by default which causes problems
-  # mactex users should use caskroom/cask/mactex-no-ghostscript instead
-  conflicts_with cask: "caskroom/cask/mactex"
 
   # For Pillow source install
   depends_on "openjpeg"
@@ -28,6 +24,10 @@ class Ocrmypdf < Formula
   depends_on "webp"
   depends_on "little-cms2"
   depends_on "zlib"
+
+  # mactex installs its own ghostscript by default which causes problems
+  # mactex users should use caskroom/cask/mactex-no-ghostscript instead
+  conflicts_with :cask => "caskroom/cask/mactex"
 
   resource "cffi" do
     url "https://files.pythonhosted.org/packages/c9/70/89b68b6600d479034276fed316e14b9107d50a62f5627da37fafe083fde3/cffi-1.11.2.tar.gz"
