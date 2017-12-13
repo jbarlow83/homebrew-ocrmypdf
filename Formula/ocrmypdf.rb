@@ -1,4 +1,3 @@
-
 class Ocrmypdf < Formula
   include Language::Python::Virtualenv
 
@@ -8,26 +7,21 @@ class Ocrmypdf < Formula
   sha256 "e523591c5d4e4a8cdeee2e9e24c3f631c8638a803dba74c5b8b274681784dbf4"
 
   depends_on :python3
-  depends_on :x11 # Pillow needs XQuartz
   depends_on "pkg-config" => :build
-  depends_on "libffi"
-  depends_on "tesseract"
-  depends_on "ghostscript"
-  depends_on "unpaper"
-  depends_on "qpdf"
+  depends_on "tesseract" => :run
+  depends_on "ghostscript" => :run
+  depends_on "qpdf" => :run
+  depends_on "unpaper" => :run
 
   # For Pillow source install
   depends_on "openjpeg"
   depends_on "freetype"
   depends_on "libpng"
-  depends_on "libjpeg"
+  depends_on "jpeg"
   depends_on "webp"
   depends_on "little-cms2"
-  depends_on "zlib"
 
-  # mactex installs its own ghostscript by default which causes problems
-  # mactex users should use caskroom/cask/mactex-no-ghostscript instead
-  conflicts_with :cask => "caskroom/cask/mactex"
+  conflicts_with "caskroom/cask/mactex", :because => "mactex installs an incompatible ghostscript; use mactex-no-ghostscript instead"
 
   resource "cffi" do
     url "https://files.pythonhosted.org/packages/c9/70/89b68b6600d479034276fed316e14b9107d50a62f5627da37fafe083fde3/cffi-1.11.2.tar.gz"
@@ -70,18 +64,36 @@ class Ocrmypdf < Formula
   end
 
   def install
-    ENV.append ["SETUPTOOLS_SCM_PRETEND_VERSION"], "v5.4.4"
-    ENV.each do |key, value|
-      puts "#{key}:#{value}"
+    # Pillow installation steps copied from https://github.com/Homebrew/homebrew-core/blob/c9df884912456d09ebc19eb9cd7d4cc49b63a333/Formula/weboob.rb#L128-L143
+    venv = virtualenv_create(libexec, "python3")
+
+    resource("Pillow").stage do
+      inreplace "setup.py" do |s|
+        sdkprefix = MacOS::CLT.installed? ? "" : MacOS.sdk_path
+        s.gsub! "openjpeg.h", "probably_not_a_header_called_this_eh.h"
+        s.gsub! "ZLIB_ROOT = None", "ZLIB_ROOT = ('#{sdkprefix}/usr/lib', '#{sdkprefix}/usr/include')"
+        s.gsub! "JPEG_ROOT = None", "JPEG_ROOT = ('#{Formula["jpeg"].opt_prefix}/lib', '#{Formula["jpeg"].opt_prefix}/include')"
+        s.gsub! "FREETYPE_ROOT = None", "FREETYPE_ROOT = ('#{Formula["freetype"].opt_prefix}/lib', '#{Formula["freetype"].opt_prefix}/include')"
+      end
+
+      # avoid triggering "helpful" distutils code that doesn't recognize Xcode 7 .tbd stubs
+      ENV.delete "SDKROOT"
+      ENV.append "CFLAGS", "-I#{MacOS.sdk_path}/System/Library/Frameworks/Tk.framework/Versions/8.5/Headers" unless MacOS::CLT.installed?
+      venv.pip_install Pathname.pwd
     end
-    virtualenv_install_with_resources
+
+    res = resources.map(&:name).to_set - ["Pillow"]
+
+    res.each do |r|
+      venv.pip_install resource(r)
+    end
+
+    venv.pip_install_and_link buildpath
   end
 
   test do
-    # `test do` will create, run in and delete a temporary directory.
-    #
-    # The installed folder is not in the path, so use the entire path to any
-    # executables being tested: `system "#{bin}/program", "do", "something"`.
+    # Since we use Python 3, we require a UTF-8 locale
+    ENV["LC_ALL"] = "en_US.UTF-8"
     system "#{bin}/ocrmypdf", "--version"
   end
 end
