@@ -6,22 +6,17 @@ class Ocrmypdf < Formula
   url "https://files.pythonhosted.org/packages/9b/c0/13a0ffb2184b85018b64466d1303ec1ceee05acff0b8ada16fdbf2ec101d/ocrmypdf-5.4.4.tar.gz"
   sha256 "e523591c5d4e4a8cdeee2e9e24c3f631c8638a803dba74c5b8b274681784dbf4"
 
-  depends_on :python3
+  depends_on "python3"
   depends_on "pkg-config" => :build
-  depends_on "tesseract" => :run
-  depends_on "ghostscript" => :run
-  depends_on "qpdf" => :run
-  depends_on "unpaper" => :run
+  depends_on "tesseract"
+  depends_on "ghostscript"
+  depends_on "qpdf"
+  depends_on "unpaper"
 
   # For Pillow source install
-  depends_on "openjpeg"
   depends_on "freetype"
   depends_on "libpng"
   depends_on "jpeg"
-  depends_on "webp"
-  depends_on "little-cms2"
-
-  conflicts_with "caskroom/cask/mactex", :because => "mactex installs an incompatible ghostscript; use mactex-no-ghostscript instead"
 
   resource "cffi" do
     url "https://files.pythonhosted.org/packages/c9/70/89b68b6600d479034276fed316e14b9107d50a62f5627da37fafe083fde3/cffi-1.11.2.tar.gz"
@@ -77,7 +72,6 @@ class Ocrmypdf < Formula
       end
 
       # avoid triggering "helpful" distutils code that doesn't recognize Xcode 7 .tbd stubs
-      ENV.delete "SDKROOT"
       ENV.append "CFLAGS", "-I#{MacOS.sdk_path}/System/Library/Frameworks/Tk.framework/Versions/8.5/Headers" unless MacOS::CLT.installed?
       venv.pip_install Pathname.pwd
     end
@@ -95,5 +89,29 @@ class Ocrmypdf < Formula
     # Since we use Python 3, we require a UTF-8 locale
     ENV["LC_ALL"] = "en_US.UTF-8"
     system "#{bin}/ocrmypdf", "--version"
+
+    # One page Postscript with the wording "Testing" on the page
+    # This is more compact than including a test PDF
+    (testpath/"test.ps").write(
+      <<~EOS
+        %!PS
+        /Times-Roman findfont
+        20 scalefont
+        setfont
+        gsave
+        newpath
+        200 400 moveto
+        (Testing) show
+        closepath
+        stroke
+        showpage
+      EOS
+    )
+
+    # Convert Postscript file to PDF
+    system "#{Formula["ghostscript"].opt_bin}/ps2pdf", testpath/"test.ps", testpath/"test.pdf"
+
+    # Use ocrmypdf -f to rasterize the PDF to image before doing OCR
+    system "#{bin}/ocrmypdf", "-f", "-q", "--deskew", testpath/"test.pdf", testpath/"ocr.pdf"
   end
 end
