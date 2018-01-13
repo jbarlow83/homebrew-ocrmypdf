@@ -1,22 +1,21 @@
+
 class Ocrmypdf < Formula
   include Language::Python::Virtualenv
 
   desc "Adds an OCR text layer to scanned PDF files"
   homepage "https://github.com/jbarlow83/OCRmyPDF"
-  url "https://files.pythonhosted.org/packages/9b/c0/13a0ffb2184b85018b64466d1303ec1ceee05acff0b8ada16fdbf2ec101d/ocrmypdf-5.4.4.tar.gz"
-  sha256 "e523591c5d4e4a8cdeee2e9e24c3f631c8638a803dba74c5b8b274681784dbf4"
+  url "https://files.pythonhosted.org/packages/c2/69/d250b73cab334a07608715db2f41bbf3d1e69e3f097042baec5cbfa7a9f7/ocrmypdf-5.5.tar.gz"
+  sha256 "8f2ba79c698490373c8fa4ac669c0f6e86a3f146edff6342db91428376ad2269"
 
-  depends_on "python3"
-  depends_on "pkg-config" => :build
-  depends_on "tesseract"
-  depends_on "ghostscript"
-  depends_on "qpdf"
-  depends_on "unpaper"
-
-  # For Pillow source install
   depends_on "freetype"
-  depends_on "libpng"
+  depends_on "ghostscript"
   depends_on "jpeg"
+  depends_on "libpng"
+  depends_on "pkg-config" => :build
+  depends_on "python3"
+  depends_on "qpdf"
+  depends_on "tesseract"
+  depends_on "unpaper"
 
   resource "cffi" do
     url "https://files.pythonhosted.org/packages/c9/70/89b68b6600d479034276fed316e14b9107d50a62f5627da37fafe083fde3/cffi-1.11.2.tar.gz"
@@ -28,14 +27,9 @@ class Ocrmypdf < Formula
     sha256 "140b70fa3a3bfb54e92947818cee01483a4f1492b5d1d02b0f649257f5ffc9ae"
   end
 
-  resource "olefile" do
-    url "https://files.pythonhosted.org/packages/35/17/c15d41d5a8f8b98cc3df25eb00c5cee76193114c78e5674df6ef4ac92647/olefile-0.44.zip"
-    sha256 "61f2ca0cd0aa77279eb943c07f607438edf374096b66332fae1ee64a6f0f73ad"
-  end
-
   resource "Pillow" do
-    url "https://files.pythonhosted.org/packages/e0/82/ec499c78bfe4ecaa91c2f3000040451d187ed0a816d58b8543e29c48827f/Pillow-4.3.0.tar.gz"
-    sha256 "a97c715d44efd5b4aa8d739b8fad88b93ed79f1b33fc2822d5802043f3b1b527"
+    url "https://files.pythonhosted.org/packages/0f/57/25be1a4c2d487942c3ed360f6eee7f41c5b9196a09ca71c54d1a33c968d9/Pillow-5.0.0.tar.gz"
+    sha256 "12f29d6c23424f704c66b5b68c02fe0b571504459605cfe36ab8158359b0e1bb"
   end
 
   resource "pycparser" do
@@ -59,7 +53,6 @@ class Ocrmypdf < Formula
   end
 
   def install
-    # Pillow installation steps copied from https://github.com/Homebrew/homebrew-core/blob/c9df884912456d09ebc19eb9cd7d4cc49b63a333/Formula/weboob.rb#L128-L143
     venv = virtualenv_create(libexec, "python3")
 
     resource("Pillow").stage do
@@ -88,7 +81,6 @@ class Ocrmypdf < Formula
   test do
     # Since we use Python 3, we require a UTF-8 locale
     ENV["LC_ALL"] = "en_US.UTF-8"
-    system "#{bin}/ocrmypdf", "--version"
 
     # One page Postscript with the wording "Testing" on the page
     # This is more compact than including a test PDF
@@ -108,7 +100,6 @@ class Ocrmypdf < Formula
       EOS
     )
 
-    # Convert Postscript file to PDF
     system "#{Formula["ghostscript"].opt_bin}/ps2pdf", testpath/"test.ps", testpath/"test.pdf"
 
     # Use ocrmypdf -f to rasterize the PDF to image before doing OCR
