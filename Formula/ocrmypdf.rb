@@ -4,14 +4,14 @@ class Ocrmypdf < Formula
 
   desc "Adds an OCR text layer to scanned PDF files"
   homepage "https://github.com/jbarlow83/OCRmyPDF"
-  url "https://files.pythonhosted.org/packages/c2/69/d250b73cab334a07608715db2f41bbf3d1e69e3f097042baec5cbfa7a9f7/ocrmypdf-5.5.tar.gz"
-  sha256 "8f2ba79c698490373c8fa4ac669c0f6e86a3f146edff6342db91428376ad2269"
+  url "https://files.pythonhosted.org/packages/e1/c9/1183b939cc7cd3cf937a6619139879185cf8a51a4cadcbd572e688d7e1ea/ocrmypdf-5.6.0.tar.gz"
+  sha256 "db8c64b491bdb09bd28498d21aa2b132f8af247c815a551531a070390196546c"
 
+  depends_on "pkg-config" => :build
   depends_on "freetype"
   depends_on "ghostscript"
   depends_on "jpeg"
   depends_on "libpng"
-  depends_on "pkg-config" => :build
   depends_on "python3"
   depends_on "qpdf"
   depends_on "tesseract"
@@ -82,27 +82,7 @@ class Ocrmypdf < Formula
     # Since we use Python 3, we require a UTF-8 locale
     ENV["LC_ALL"] = "en_US.UTF-8"
 
-    # One page Postscript with the wording "Testing" on the page
-    # This is more compact than including a test PDF
-    (testpath/"test.ps").write(
-      <<~EOS
-        %!PS
-        /Times-Roman findfont
-        20 scalefont
-        setfont
-        gsave
-        newpath
-        200 400 moveto
-        (Testing) show
-        closepath
-        stroke
-        showpage
-      EOS
-    )
-
-    system "#{Formula["ghostscript"].opt_bin}/ps2pdf", testpath/"test.ps", testpath/"test.pdf"
-
     # Use ocrmypdf -f to rasterize the PDF to image before doing OCR
-    system "#{bin}/ocrmypdf", "-f", "-q", "--deskew", testpath/"test.pdf", testpath/"ocr.pdf"
+    system "#{bin}/ocrmypdf", "-f", "-q", "--deskew", test_fixtures("test.pdf"), testpath/"ocr.pdf"
   end
 end
