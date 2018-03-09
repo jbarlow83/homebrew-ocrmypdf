@@ -4,15 +4,15 @@ class Ocrmypdf < Formula
 
   desc "Adds an OCR text layer to scanned PDF files"
   homepage "https://github.com/jbarlow83/OCRmyPDF"
-  url "https://files.pythonhosted.org/packages/e1/c9/1183b939cc7cd3cf937a6619139879185cf8a51a4cadcbd572e688d7e1ea/ocrmypdf-5.6.0.tar.gz"
-  sha256 "db8c64b491bdb09bd28498d21aa2b132f8af247c815a551531a070390196546c"
+  url "https://files.pythonhosted.org/packages/ea/23/ca3943e400be1231e582561aa9ea1611dbf2ba225dcfecda314d908c1f17/ocrmypdf-5.6.1.tar.gz"
+  sha256 "a5f920c390f1fbf3f7fce6d2b95d10461da1ef520a877532ce6696092ecd209e"
 
   depends_on "pkg-config" => :build
   depends_on "freetype"
   depends_on "ghostscript"
   depends_on "jpeg"
   depends_on "libpng"
-  depends_on "python3"
+  depends_on "python"
   depends_on "qpdf"
   depends_on "tesseract"
   depends_on "unpaper"
@@ -82,7 +82,8 @@ class Ocrmypdf < Formula
     # Since we use Python 3, we require a UTF-8 locale
     ENV["LC_ALL"] = "en_US.UTF-8"
 
-    # Use ocrmypdf -f to rasterize the PDF to image before doing OCR
-    system "#{bin}/ocrmypdf", "-f", "-q", "--deskew", test_fixtures("test.pdf"), testpath/"ocr.pdf"
+    system "#{bin}/ocrmypdf", "-f", "-q", "--deskew",
+                              test_fixtures("test.pdf"), "ocr.pdf"
+    assert_predicate testpath/"ocr.pdf", :exist?
   end
 end
