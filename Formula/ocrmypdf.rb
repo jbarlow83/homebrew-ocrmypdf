@@ -4,10 +4,11 @@ class Ocrmypdf < Formula
 
   desc "Adds an OCR text layer to scanned PDF files"
   homepage "https://github.com/jbarlow83/OCRmyPDF"
-  url "https://files.pythonhosted.org/packages/f6/9c/cb7e509d78697af2b50d0cc422116f61cd684889dfd641ede667e60f2fd6/ocrmypdf-5.6.3.tar.gz"
-  sha256 "506606263b7285c7b67fe02bc825ad5c89fdd2e2b36e43fd14bd1ed592ab305f"
+  url "https://files.pythonhosted.org/packages/33/76/c523499b49cc14ddd7c6259ed76d214681a03aefdb0fda2fedc6030f8635/ocrmypdf-6.0.0.tar.gz"
+  sha256 "f8147898d69f79c660a6a29bdb0aa5b4800ea78c89bf33103487c73ca9a00244"
 
   depends_on "pkg-config" => :build
+  depends_on "mupdf-tools" => :build  # statically links libmupdf.a
   depends_on "freetype"
   depends_on "ghostscript"
   depends_on "jpeg"
@@ -18,8 +19,8 @@ class Ocrmypdf < Formula
   depends_on "unpaper"
 
   resource "cffi" do
-    url "https://files.pythonhosted.org/packages/c9/70/89b68b6600d479034276fed316e14b9107d50a62f5627da37fafe083fde3/cffi-1.11.2.tar.gz"
-    sha256 "ab87dd91c0c4073758d07334c1e5f712ce8fe48f007b86f8238773963ee700a6"
+    url "https://files.pythonhosted.org/packages/e7/a7/4cd50e57cc6f436f1cc3a7e8fa700ff9b8b4d471620629074913e3735fb2/cffi-1.11.5.tar.gz"
+    sha256 "e90f17980e6ab0f3c2f3730e56d1fe9bcba1891eeea58966e89d352492cc74f4"
   end
 
   resource "img2pdf" do
@@ -35,6 +36,11 @@ class Ocrmypdf < Formula
   resource "pycparser" do
     url "https://files.pythonhosted.org/packages/8c/2d/aad7f16146f4197a11f8e91fb81df177adcc2073d36a17b1491fd09df6ed/pycparser-2.18.tar.gz"
     sha256 "99a8ca03e29851d96616ad0404b4aad7d9ee16f25c9f9708a11faf2810f7b226"
+  end
+
+  resource "PyMuPDF" do
+    url ""
+    sha256 ""
   end
 
   resource "PyPDF2" do
