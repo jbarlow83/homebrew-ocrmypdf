@@ -4,8 +4,8 @@ class Ocrmypdf < Formula
 
   desc "Adds an OCR text layer to scanned PDF files"
   homepage "https://github.com/jbarlow83/OCRmyPDF"
-  url "https://files.pythonhosted.org/packages/33/76/c523499b49cc14ddd7c6259ed76d214681a03aefdb0fda2fedc6030f8635/ocrmypdf-6.0.0.tar.gz"
-  sha256 "f8147898d69f79c660a6a29bdb0aa5b4800ea78c89bf33103487c73ca9a00244"
+  url "https://files.pythonhosted.org/packages/54/9e/96bfc75d813c96e1df0c2c2abddb8f5ff20f9e3e17464dce41f540e1cbe5/ocrmypdf-6.1.0.tar.gz"
+  sha256 "eb3623584ba37bea16c46ad9a758e18d085617d21d95218090412f1da4dba638"
 
   depends_on "pkg-config" => :build
   depends_on "mupdf-tools" => :build  # statically links libmupdf.a
@@ -36,11 +36,6 @@ class Ocrmypdf < Formula
   resource "pycparser" do
     url "https://files.pythonhosted.org/packages/8c/2d/aad7f16146f4197a11f8e91fb81df177adcc2073d36a17b1491fd09df6ed/pycparser-2.18.tar.gz"
     sha256 "99a8ca03e29851d96616ad0404b4aad7d9ee16f25c9f9708a11faf2810f7b226"
-  end
-
-  resource "PyMuPDF" do
-    url ""
-    sha256 ""
   end
 
   resource "PyPDF2" do
