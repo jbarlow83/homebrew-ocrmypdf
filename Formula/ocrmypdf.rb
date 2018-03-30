@@ -4,8 +4,8 @@ class Ocrmypdf < Formula
 
   desc "Adds an OCR text layer to scanned PDF files"
   homepage "https://github.com/jbarlow83/OCRmyPDF"
-  url "https://files.pythonhosted.org/packages/f7/2a/388ac5ceff5ebabf394d55f14d2885cb143c8362a67c9fef1c805ee145fa/ocrmypdf-6.1.1.tar.gz"
-  sha256 "b0b10b05f50d4c1c36625e666491d1f0446b97666f2397c14a60a3d4bc567bfb"
+  url "https://files.pythonhosted.org/packages/0d/bf/ca74b86513a85410ff6e8a28406628f6c5b0e3267502c9d0a81c950909a6/ocrmypdf-6.1.2.tar.gz"
+  sha256 "fcca334ca204b9e4faf846b4f8abe38537eac5bb74fed659793c84c131bfc573"
 
   depends_on "pkg-config" => :build
   depends_on "mupdf-tools" => :build  # statically links libmupdf.a
@@ -21,6 +21,11 @@ class Ocrmypdf < Formula
   resource "cffi" do
     url "https://files.pythonhosted.org/packages/e7/a7/4cd50e57cc6f436f1cc3a7e8fa700ff9b8b4d471620629074913e3735fb2/cffi-1.11.5.tar.gz"
     sha256 "e90f17980e6ab0f3c2f3730e56d1fe9bcba1891eeea58966e89d352492cc74f4"
+  end
+
+  resource "defusedxml" do
+    url "https://files.pythonhosted.org/packages/74/ba/4ba4e89e21b5a2e267d80736ea674609a0a33cc4435a6d748ef04f1f9374/defusedxml-0.5.0.tar.gz"
+    sha256 "24d7f2f94f7f3cb6061acb215685e5125fbcdc40a857eff9de22518820b0a4f4"
   end
 
   resource "img2pdf" do
