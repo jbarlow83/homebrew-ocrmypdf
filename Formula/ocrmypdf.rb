@@ -4,8 +4,8 @@ class Ocrmypdf < Formula
 
   desc "Adds an OCR text layer to scanned PDF files"
   homepage "https://github.com/jbarlow83/OCRmyPDF"
-  url "https://files.pythonhosted.org/packages/54/9e/96bfc75d813c96e1df0c2c2abddb8f5ff20f9e3e17464dce41f540e1cbe5/ocrmypdf-6.1.0.tar.gz"
-  sha256 "eb3623584ba37bea16c46ad9a758e18d085617d21d95218090412f1da4dba638"
+  url "https://files.pythonhosted.org/packages/f7/2a/388ac5ceff5ebabf394d55f14d2885cb143c8362a67c9fef1c805ee145fa/ocrmypdf-6.1.1.tar.gz"
+  sha256 "b0b10b05f50d4c1c36625e666491d1f0446b97666f2397c14a60a3d4bc567bfb"
 
   depends_on "pkg-config" => :build
   depends_on "mupdf-tools" => :build  # statically links libmupdf.a
