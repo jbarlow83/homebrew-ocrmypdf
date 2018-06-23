@@ -4,8 +4,8 @@ class Ocrmypdf < Formula
 
   desc "Adds an OCR text layer to scanned PDF files"
   homepage "https://github.com/jbarlow83/OCRmyPDF"
-  url "https://files.pythonhosted.org/packages/c9/1a/99115c743245066e6ea8004c68a0c0356ba443fe4ea8e9cfcf9b28192efb/ocrmypdf-6.2.0.tar.gz"
-  sha256 "d0f0134b515fb6c7a8881c9ca930dfe59ac81ee5577c441e9e7ff787958b5d01"
+  url "https://files.pythonhosted.org/packages/bd/62/81cb1e337863081825c1f89b6d1648151d71b26b4ef82afdb7017409499a/ocrmypdf-6.2.1.tar.gz"
+  sha256 "9b615492f7fc6bec0e49483d89378d8647de1b61c701e060c9bd11a686c9b256"
 
   depends_on "pkg-config" => :build
   depends_on "mupdf-tools" => :build  # statically links libmupdf.a
@@ -23,14 +23,14 @@ class Ocrmypdf < Formula
     sha256 "e90f17980e6ab0f3c2f3730e56d1fe9bcba1891eeea58966e89d352492cc74f4"
   end
 
+  resource "defusedxml" do
+    url "https://files.pythonhosted.org/packages/74/ba/4ba4e89e21b5a2e267d80736ea674609a0a33cc4435a6d748ef04f1f9374/defusedxml-0.5.0.tar.gz"
+    sha256 "24d7f2f94f7f3cb6061acb215685e5125fbcdc40a857eff9de22518820b0a4f4"
+  end
+
   resource "img2pdf" do
     url "https://files.pythonhosted.org/packages/7e/a2/4f06081f674920be757d894b4bab874e6a3b5227e730cb7618430b366e69/img2pdf-0.2.4.tar.gz"
     sha256 "140b70fa3a3bfb54e92947818cee01483a4f1492b5d1d02b0f649257f5ffc9ae"
-  end
-
-  resource "pikepdf" do
-    url "https://files.pythonhosted.org/packages/df/5d/2b398342e598dd6bca9c543fcd4dec31cd953202c3d0fdc3abd29e456548/pikepdf-0.2.0.tar.gz"
-    sha256 "9f51a1c50ea8b60a420f9027fac5256231a4c3b9bad6f64c08a2d49d86504443"
   end
 
   resource "Pillow" do
@@ -38,24 +38,14 @@ class Ocrmypdf < Formula
     sha256 "12f29d6c23424f704c66b5b68c02fe0b571504459605cfe36ab8158359b0e1bb"
   end
 
-  resource "pybind11" do
-    url "https://files.pythonhosted.org/packages/95/30/788a5c943f1399e05b52148504dffa7a801ea52eb5bb5cac0cc828306278/pybind11-2.2.3.tar.gz"
-    sha256 "87ff3ae777d9326349af5272974581270b2a0909b2392dc0cc57eb28ce23bcc3"
-  end
-
   resource "pycparser" do
     url "https://files.pythonhosted.org/packages/8c/2d/aad7f16146f4197a11f8e91fb81df177adcc2073d36a17b1491fd09df6ed/pycparser-2.18.tar.gz"
     sha256 "99a8ca03e29851d96616ad0404b4aad7d9ee16f25c9f9708a11faf2810f7b226"
   end
 
-  resource "python-xmp-toolkit" do
-    url "https://files.pythonhosted.org/packages/5b/0b/4f95bc448e4e30eb0e831df0972c9a4b3efa8f9f76879558e9123215a7b7/python-xmp-toolkit-2.0.1.tar.gz"
-    sha256 "f8d912946ff9fd46ed5c7c355aa5d4ea193328b3f200909ef32d9a28a1419a38"
-  end
-
-  resource "pytz" do
-    url "https://files.pythonhosted.org/packages/10/76/52efda4ef98e7544321fd8d5d512e11739c1df18b0649551aeccfb1c8376/pytz-2018.4.tar.gz"
-    sha256 "c06425302f2cf668f1bba7a0a03f3c1d34d4ebeef2c72003da308b3947c7f749"
+  resource "PyPDF2" do
+    url "https://files.pythonhosted.org/packages/b4/01/68fcc0d43daf4c6bdbc6b33cc3f77bda531c86b174cac56ef0ffdb96faab/PyPDF2-1.26.0.tar.gz"
+    sha256 "e28f902f2f0a1603ea95ebe21dff311ef09be3d0f0ef29a3e44a932729564385"
   end
 
   resource "reportlab" do
